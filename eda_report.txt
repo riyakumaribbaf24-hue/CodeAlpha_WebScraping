@@ -1,0 +1,137 @@
+=================================================================
+  CodeAlpha — Task 2: Exploratory Data Analysis (EDA)
+  Dataset : Books Scraped from books.toscrape.com
+=================================================================
+
+── 1. SHAPE & DATA TYPES ──────────────────────────────────────
+  Rows    : 1,000
+  Columns : 9
+
+title                 str
+author                str
+category              str
+price_gbp         float64
+rating              int64
+in_stock             bool
+pages               int64
+year_published      int64
+num_reviews         int64
+
+── 2. FIRST 5 ROWS ────────────────────────────────────────────
+                            title          author         category  price_gbp  rating  in_stock  pages  year_published  num_reviews
+0                  The Dark Light   Claire Taylor  Science Fiction      16.74       4      True    307            2023           31
+1                The Hidden Stone      Emma Brown       Philosophy      14.18       2      True    298            2011           70
+2                   The Dark Wind  Peter Martinez         Religion      17.53       1      True    389            2013          122
+3  The Dark City: Garden of Light    Claire Moore        Self Help      12.36       3     False    368            2005            7
+4                 The Hidden Path  William Walker  Science Fiction      15.85       4      True    147            1996           12
+
+── 3. MISSING VALUES ──────────────────────────────────────────
+  No missing values found.
+
+── 4. DUPLICATE ROWS ──────────────────────────────────────────
+  Duplicate rows: 0
+
+── 5. DESCRIPTIVE STATISTICS ──────────────────────────────────
+                   title     author category    price_gbp       rating in_stock        pages  year_published  num_reviews
+count               1000       1000     1000  1000.000000  1000.000000     1000  1000.000000     1000.000000  1000.000000
+unique               676        368       20          NaN          NaN        2          NaN             NaN          NaN
+top     The Hidden Stone  Helen Lee    Music          NaN          NaN     True          NaN             NaN          NaN
+freq                   7          8       61          NaN          NaN      878          NaN             NaN          NaN
+mean                 NaN        NaN      NaN    14.321800     3.615000      NaN   324.469000     2010.116000    34.087000
+std                  NaN        NaN      NaN     4.500499     1.087178      NaN    90.250397        8.618052    34.194015
+min                  NaN        NaN      NaN     2.500000     1.000000      NaN    80.000000     1995.000000     0.000000
+25%                  NaN        NaN      NaN    11.187500     3.000000      NaN   261.000000     2003.000000    10.000000
+50%                  NaN        NaN      NaN    14.405000     4.000000      NaN   324.000000     2010.000000    24.000000
+75%                  NaN        NaN      NaN    17.172500     4.000000      NaN   383.000000     2018.000000    48.000000
+max                  NaN        NaN      NaN    31.010000     5.000000      NaN   673.000000     2024.000000   270.000000
+
+── 6. CATEGORY DISTRIBUTION ───────────────────────────────────
+category
+Music                 61
+Horror                61
+Historical Fiction    59
+Fantasy               58
+Travel                56
+Philosophy            55
+Psychology            55
+Science Fiction       52
+Religion              51
+Sports                51
+Art                   48
+Self Help             47
+Romance               47
+Cookbooks             46
+Children's            44
+Poetry                44
+Business              44
+Thriller              43
+Biography             42
+Mystery               36
+
+── 7. PRICE STATISTICS ────────────────────────────────────────
+  Min     : £2.50
+  Max     : £31.01
+  Mean    : £14.32
+  Median  : £14.41
+  Std Dev : £4.50
+  Skew    : 0.089
+  Kurt    : 0.092
+
+  IQR     : £5.98  (Q1=11.19, Q3=17.17)
+  Outliers (price): 4 books
+
+── 8. RATING DISTRIBUTION ─────────────────────────────────────
+  1★    43  ████
+  2★   110  ███████████
+  3★   269  ██████████████████████████
+  4★   345  ██████████████████████████████████
+  5★   233  ███████████████████████
+
+── 9. STOCK STATUS ────────────────────────────────────────────
+  In Stock    : 878
+  Out of Stock: 122
+  In-Stock %  : 87.8%
+
+── 10. PRICE BY RATING (mean) ─────────────────────────────────
+rating
+1    14.40
+2    14.29
+3    14.12
+4    14.24
+5    14.68
+
+── 11. CORRELATION MATRIX (numeric columns) ───────────────────
+                price_gbp  rating  pages  year_published  num_reviews
+price_gbp           1.000   0.028  0.016           0.015       -0.061
+rating              0.028   1.000  0.035           0.049       -0.025
+pages               0.016   0.035  1.000          -0.025       -0.002
+year_published      0.015   0.049 -0.025           1.000        0.058
+num_reviews        -0.061  -0.025 -0.002           0.058        1.000
+
+── 12. TOP 10 CATEGORIES BY AVERAGE PRICE ─────────────────────
+category
+Art                21.46
+Cookbooks          19.97
+Business           17.46
+Travel             16.65
+Science Fiction    15.88
+Psychology         15.23
+Biography          15.06
+Fantasy            14.71
+Philosophy         14.57
+Self Help          14.36
+
+── 13. STATISTICAL TEST: Price vs Rating (Pearson r) ──────────
+  r = 0.0276,  p-value = 0.3837
+  Not significant correlation (α=0.05)
+
+── 14. HYPOTHESES & FINDINGS ──────────────────────────────────
+  H1: Higher-rated books cost more → Not supported
+  H2: In-stock books have higher ratings → Avg diff = +0.616 (Supported)
+
+  [Saved] chart1_price_distribution.png
+  [Saved] chart2_rating_distribution.png
+  [Saved] chart3_category_counts.png
+  [Saved] chart4_avg_price_by_category.png
+  [Saved] chart5_correlation_heatmap.png
+  [Saved] chart6_price_rating_scatter.png
